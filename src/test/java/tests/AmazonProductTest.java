@@ -32,5 +32,12 @@ public class AmazonProductTest extends BaseTest{
                 "you are looking for the wrong product!!!");
 
     }
+    @Test(priority = 4)
+    public void verifAllItemsIsprime(){
+        mainPage = new MainPage(driver);
+        assertEquals(mainPage.verifyAllItemsIsPrime1().size(),
+                mainPage.verifyAllItemsIsPrime2().size(),"All item is NOT PRIME!!!");
+
+    }
 
 }

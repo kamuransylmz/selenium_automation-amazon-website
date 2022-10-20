@@ -53,22 +53,32 @@ public class MainPage {
 
                 return testDropdownList;
         }
-        public void verifyAllItemsIsPrime() {
+        public List<WebElement> verifyAllItemsIsPrime1() {
                 waitFor(allItems);
                 List<WebElement> allItemsLocator = driver.findElements(allItems);
                 System.out.println("All items number are: " + allItemsLocator.size());
 
+                //waitFor(primeItems);
+                //List<WebElement>  primeItemsLocator = driver.findElements(primeItems);
+                //System.out.println("Prime items number are: " + primeItemsLocator.size());
+
+                //Verfy in TEST CLASS
+                //if (allItemsLocator.size() == primeItemsLocator.size()) {
+                  //      System.out.println("*** " + "All items is prime product" + " ***");
+                //}else {
+                  //      System.out.println("All items and Prime items DOES NOT match!!!");
+                //}
+                return allItemsLocator;
+        }
+        public List<WebElement> verifyAllItemsIsPrime2() {
+                //waitFor(allItems);
+                //List<WebElement> allItemsLocator = driver.findElements(allItems);
+                //System.out.println("All items number are: " + allItemsLocator.size());
+
                 waitFor(primeItems);
                 List<WebElement>  primeItemsLocator = driver.findElements(primeItems);
                 System.out.println("Prime items number are: " + primeItemsLocator.size());
-
-                //Verfy in TEST CLASS
-                if (allItemsLocator.size() == primeItemsLocator.size()) {
-                        System.out.println("*** " + "All items is prime product" + " ***");
-                }else {
-                        System.out.println("All items and Prime items DOES NOT match!!!");
-                }
-
+                return primeItemsLocator;
         }
 
         public void waitFor(By Locator){
