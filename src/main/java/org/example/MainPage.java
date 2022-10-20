@@ -53,7 +53,7 @@ public class MainPage {
 
                 return testDropdownList;
         }
-        public List<WebElement> verifyAllItemsIsPrime1() {
+        public List<WebElement> verifyAllItemsArePrime1() {
                 waitFor(allItems);
                 List<WebElement> allItemsLocator = driver.findElements(allItems);
                 System.out.println("All items number are: " + allItemsLocator.size());
@@ -70,7 +70,7 @@ public class MainPage {
                 //}
                 return allItemsLocator;
         }
-        public List<WebElement> verifyAllItemsIsPrime2() {
+        public List<WebElement> verifyAllItemsArePrime2() {
                 //waitFor(allItems);
                 //List<WebElement> allItemsLocator = driver.findElements(allItems);
                 //System.out.println("All items number are: " + allItemsLocator.size());
