@@ -23,6 +23,7 @@ public class MainPage {
         private final By primeItems = By.xpath("//span[contains(@class,'aok-relative')]");
         private final By addChart = By.id("add-to-cart-button");
         private final By openChart = By.id("nav-cart-count-container");
+        private final By productTitle = By.id("productTitle");
 
         public MainPage(WebDriver driver){
             this.driver = driver;
@@ -81,31 +82,21 @@ public class MainPage {
                 return primeItemsLocator;
         }
 
+        public AddItemToChart addPrimeItemsToChart() {
+                List<WebElement> firstItem = driver.findElements(allItems);
+                firstItem.get(0).click();
+                return new AddItemToChart(driver);
+        }
+        /*
+
+        public AddItemToChart getChart(){
+                driver.findElement(openChart).click();
+                return new AddItemToChart(driver);
+        }
+   */
         public void waitFor(By Locator){
                 WebDriverWait wait = new WebDriverWait(driver,5);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(Locator));
         }
-
-        public void addPrimeItemsToChart() {
-                List<WebElement> firstItem = driver.findElements(allItems);
-                firstItem.get(0).click();
-
-                driver.findElement(addChart).click();
-        }
-        public AddItemToChart getChart(){
-
-                driver.findElement(openChart).click();
-                return new AddItemToChart(driver);
-        }
-
-
-        //AmazonProject amazonProject = new AmazonProject();
-        //amazonProject.openLoginPageAmazon();
-        //amazonProject.loginAmazon("kamuransylmz@gmail.com","sylmz123");
-        //amazonProject.selectCategories();
-        //amazonProject.searchBox();
-        //amazonProject.verifyAllItemsIsPrime();
-        //amazonProject.addPrimeItemsToChart();
-        //amazonProject.clearChart();
 
 }
