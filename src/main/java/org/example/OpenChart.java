@@ -12,9 +12,12 @@ public class OpenChart {
         this.driver = driver;
     }
 
-    public void deleteItems(){
-        driver.findElement(openChart).click();
+    public int deleteItems(){
+
         driver.findElement(deleteItemFromChart).click();
+
+        String count = driver.findElement(openChart).getText();
+        return Integer.parseInt(count);
     }
 
 }
