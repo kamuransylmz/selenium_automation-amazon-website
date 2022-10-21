@@ -33,17 +33,15 @@ public class AmazonProductTest extends BaseTest{
 
     }
     @Test(priority = 4)
-    public void verifAllItemsIsprime(){
+    public void verifAllItemsArePrime(){
         mainPage = new MainPage(driver);
         assertEquals(mainPage.verifyAllItemsArePrime1().size(),
                 mainPage.verifyAllItemsArePrime2().size(),"All item is NOT PRIME!!!");
     }
     @Test(priority = 5)
-    public void isItemsInChart(){
+    public void controlEmptyChart(){
         mainPage = new MainPage(driver);
         assertEquals(mainPage.addPrimeItemsToChart().clearChart().deleteItems(),
                 0,"There is an item in chart!!!");
     }
-
-
 }
