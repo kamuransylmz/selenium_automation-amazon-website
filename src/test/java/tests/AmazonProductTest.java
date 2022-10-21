@@ -13,10 +13,10 @@ public class AmazonProductTest extends BaseTest{
     @Test(priority=1)
     public void succesfulLogin(){
         SigninEMail sendEMail = firstPage.loginEMail();
-        sendEMail.setEMail("kamuransylmz@gmail.com");
+        sendEMail.setEMail("***@gmail.com");
 
         SigninPass signinPass =sendEMail.getSignPassPage();
-        signinPass.setPass("sylmz123");
+        signinPass.setPass("***");
         signinPass.getMainPage();
     }
 
