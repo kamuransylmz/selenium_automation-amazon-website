@@ -39,7 +39,7 @@ public class AmazonProductTest extends BaseTest{
                 mainPage.verifyAllItemsArePrime2().size(),"All item is NOT PRIME!!!");
     }
     @Test(priority = 5)
-    public void controlEmptyChart(){
+    public void controlIfEmptyChart(){
         mainPage = new MainPage(driver);
         assertEquals(mainPage.addPrimeItemsToChart().clearChart().deleteItems(),
                 0,"There is an item in chart!!!");
