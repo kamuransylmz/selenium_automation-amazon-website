@@ -7,16 +7,13 @@ public class SigninPass {
     private final WebDriver driver;
     private final By passwordArea = By.id("ap_password");
     private final By loginBtn = By.id("signInSubmit");
-
     public SigninPass(WebDriver driver){
         this.driver = driver;
     }
     public void setPass(String password){
         driver.findElement(passwordArea).sendKeys(password);
     }
-    public MainPage getMainPage(){
+    public void getMainPage(){
         driver.findElement(loginBtn).click();
-        return new MainPage(driver);
     }
-
 }

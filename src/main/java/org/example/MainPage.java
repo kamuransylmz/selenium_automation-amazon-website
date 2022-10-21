@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainPage {
-        //This is the main class and just call functions
         private final WebDriver driver;
         private final By searchDropdownBox = By.id("nav-search-dropdown-card");
         private final By computers = By.id("searchDropdownBox");
@@ -20,23 +20,20 @@ public class MainPage {
         private final By checkBoxPrime = By.xpath("//li[@id = 'p_85/21345931031']/span");
         private final By allItems = By.className("s-product-image-container");
         private final By primeItems = By.xpath("//span[contains(@class,'aok-relative')]");
-
         public MainPage(WebDriver driver){
             this.driver = driver;
         }
-
-        public String selectCategories() {
-                //selecting categories
+        public List<String> selectCategories(String option) {
+                findDropdownElement().selectByVisibleText(option);
                 driver.findElement(searchDropdownBox).click();
-
-                WebElement comp = driver.findElement(computers);
-                Select select = new Select(comp); //selecting specific category
-                select.selectByVisibleText("Bilgisayarlar");
-                return select.getFirstSelectedOption().getText();
+                List<WebElement> selectedElements = findDropdownElement().getAllSelectedOptions();
+                return selectedElements.stream().map(WebElement::getText).collect(Collectors.toList());
         }
-        public String searchBox() {
-                // search whatever you want
-                driver.findElement(twotabsearchtextbox).sendKeys("lenovo ideapad gaming 3");
+        private Select findDropdownElement(){
+                return new Select(driver.findElement(computers));
+        }
+        public String searchBox(String searchForProduct) {
+                driver.findElement(twotabsearchtextbox).sendKeys(searchForProduct);
                 driver.findElement(searchBtn).click();
 
                 String testDropdownList = driver.findElement(twotabsearchtextbox).getAttribute("value");
@@ -48,26 +45,19 @@ public class MainPage {
         }
         public List<WebElement> verifyAllItemsArePrime1() {
                 waitFor(allItems);
-                List<WebElement> allItemsLocator = driver.findElements(allItems);
-                System.out.println("All items number are: " + allItemsLocator.size());
-                return allItemsLocator;
+                return driver.findElements(allItems);
         }
         public List<WebElement> verifyAllItemsArePrime2() {
                 waitFor(primeItems);
-                List<WebElement>  primeItemsLocator = driver.findElements(primeItems);
-                System.out.println("Prime items number are: " + primeItemsLocator.size());
-                return primeItemsLocator;
+                return driver.findElements(primeItems);
         }
-        public void waitFor(By Locator){
+        private void waitFor(By Locator){
                 WebDriverWait wait = new WebDriverWait(driver,5);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(Locator));
         }
-
         public AddItemToChart addPrimeItemsToChart() {
                 List<WebElement> firstItem = driver.findElements(allItems);
                 firstItem.get(0).click();
                 return new AddItemToChart(driver);
         }
-
-
 }

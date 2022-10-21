@@ -5,32 +5,32 @@ import org.example.SigninEMail;
 import org.example.SigninPass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 public class AmazonProductTest extends BaseTest{
     MainPage mainPage;
-
     @Test(priority=1)
     public void succesfulLogin(){
         SigninEMail sendEMail = firstPage.loginEMail();
         sendEMail.setEMail("***@gmail.com");
-
         SigninPass signinPass =sendEMail.getSignPassPage();
         signinPass.setPass("***");
         signinPass.getMainPage();
     }
-
     @Test(priority=2)
-    public void checkSelectedArea(){
+    public void checkSelectedOption(){
         mainPage = new MainPage(driver);
-        assertEquals(mainPage.selectCategories(), "Bilgisayarlar","Selected option is INCORRECT!");
+        List<String> options = mainPage.selectCategories("Bilgisayarlar");
+        assertTrue(options.contains("Bilgisayarlar"),"Selected option is INCORRECT!");
     }
     @Test(priority = 3)
     public void checkSearchBox(){
         mainPage = new MainPage(driver);
-        assertTrue(mainPage.searchBox().contains("lenovo ideapad gaming 3"),
+        String searchFor = mainPage.searchBox("lenovo ideapad gaming 3");
+        assertTrue(searchFor.contains("lenovo ideapad gaming 3"),
                 "you are looking for the wrong product!!!");
-
     }
     @Test(priority = 4)
     public void verifAllItemsArePrime(){

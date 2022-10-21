@@ -9,11 +9,9 @@ public class FirstPage {
 
     private final WebDriver driver;
     private final By loginLocator = By.id("nav-link-accountList-nav-line-1");
-
     public FirstPage(WebDriver driver){
         this.driver = driver;
     }
-
     public SigninEMail loginEMail(){
         WebElement loginToolTip = driver.findElement(loginLocator);
 
