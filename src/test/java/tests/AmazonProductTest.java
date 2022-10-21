@@ -13,10 +13,10 @@ public class AmazonProductTest extends BaseTest{
     @Test(priority=1)
     public void succesfulLogin(){
         SigninEMail sendEMail = firstPage.loginEMail();
-        sendEMail.setEMail("***@gmail.com");
+        sendEMail.setEMail("kamuransylmz@gmail.com");
 
         SigninPass signinPass =sendEMail.getSignPassPage();
-        signinPass.setPass("***");
+        signinPass.setPass("sylmz123");
         signinPass.getMainPage();
     }
 
@@ -39,7 +39,7 @@ public class AmazonProductTest extends BaseTest{
                 mainPage.verifyAllItemsArePrime2().size(),"All item is NOT PRIME!!!");
     }
     @Test(priority = 5)
-    public void controlIfEmptyChart(){
+    public void controlIfChartIsEmpty(){
         mainPage = new MainPage(driver);
         assertEquals(mainPage.addPrimeItemsToChart().clearChart().deleteItems(),
                 0,"There is an item in chart!!!");
